@@ -1,11 +1,11 @@
-import turtle
+
 from turtle import Screen
 from snake import Snake
 from score_board import ScoreBoard
 import time
 from food import Food
 screen = Screen()
-screen.screensize(canvheight=800, canvwidth=800, bg="black")
+screen.bgcolor("black")
 
 screen.title("My snake Game")
 screen.tracer(0)
@@ -28,7 +28,7 @@ while game_on:
     snaked.move_snake()
 
     #     colliding
-    if snaked.turtles[0].distance(food) < 16:
+    if snaked.turtles[0].distance(food) < 20:
         food.refresh()
         snaked.extend()
         score.increase_score()

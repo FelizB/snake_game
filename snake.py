@@ -3,6 +3,7 @@ import time
 screen = Screen()
 move=20
 
+
 class Snake:
     def __init__(self):
         self.turtles = []
@@ -21,8 +22,8 @@ class Snake:
 
     def add_segment(self, position):
         create_turtle = Turtle("square")
-        create_turtle.color("white")
         create_turtle.penup()
+        create_turtle.color("white")
         create_turtle.goto(self.number, 0)
         self.number -= 20
         self.turtles.append(create_turtle)
