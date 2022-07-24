@@ -1,16 +1,19 @@
+import turtle
 from turtle import Screen
 from snake import Snake
+from score_board import ScoreBoard
 import time
-
+from food import Food
 screen = Screen()
-screen.bgcolor("black")
+screen.screensize(canvheight=800, canvwidth=800, bg="black")
+
 screen.title("My snake Game")
 screen.tracer(0)
 
 snaked = Snake()
-
+food = Food()
 snaked.create_snake()
-
+score = ScoreBoard()
 
 game_on = True
 
@@ -24,6 +27,23 @@ while game_on:
     time.sleep(0.1)
     snaked.move_snake()
 
+    #     colliding
+    if snaked.turtles[0].distance(food) < 16:
+        food.refresh()
+        snaked.extend()
+        score.increase_score()
+
+    if snaked.turtles[0].xcor() > 300 or snaked.turtles[0].xcor() < -300 or snaked.turtles[0].ycor() > 300 or snaked.turtles[0].ycor() < -300:
+        game_on = False
+        score.game_over()
+
+    for segments in snaked.turtles[2:]:
+        if snaked.turtles[1].distance(segments) < 10:
+            game_on = False
+            score.game_over()
+
+
+screen.exitonclick()
 
 
 
